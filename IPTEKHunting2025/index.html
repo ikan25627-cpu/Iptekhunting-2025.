@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPTEK Hunting — Napak Tilas Nusantara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #EBE1CC;
+    --paper-deep: #DCCFAE;
+    --ink: #241C12;
+    --teak: #2E2013;
+    --teak-deep: #1B140B;
+    --brass: #B08D57;
+    --brass-light: #D9BD87;
+    --terracotta: #8C3B2E;
+    --moss: #4B5A3E;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Space Grotesk', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  .exif {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--brass-light);
+  }
+
+  .divider { width: 100%; height: 18px; margin: 6px 0; }
+  .divider svg { width: 100%; height: 100%; display: block; }
+
+  .hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    align-items: flex-end;
+    background: var(--teak-deep);
+    overflow: hidden;
+  }
+  .hero img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: 60% 30%;
+    filter: brightness(0.55) saturate(1.05);
+  }
+  .hero::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(27,20,11,0.15) 0%, rgba(27,20,11,0.15) 40%, rgba(27,20,11,0.92) 100%);
+  }
+  .hero-content { position: relative; z-index: 2; padding: 48px 24px 56px; width: 100%; }
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--brass-light);
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 18px;
+  }
+  .hero-eyebrow .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--terracotta);
+    box-shadow: 0 0 0 3px rgba(140,59,46,0.25);
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600; font-style: normal;
+    font-size: clamp(40px, 9vw, 76px);
+    line-height: 0.98;
+    color: #F4ECDA;
+    margin: 0 0 18px;
+    max-width: 680px;
+  }
+  .hero h1 em { font-style: italic; font-weight: 500; color: var(--brass-light); }
+  .hero p { max-width: 480px; color: #C9BEA6; font-size: 16px; line-height: 1.6; margin: 0; }
+  .hero-frame {
+    position: absolute; top: 24px; left: 24px; right: 24px; bottom: 24px;
+    border: 1px solid rgba(244,236,218,0.35);
+    z-index: 2; pointer-events: none;
+  }
+  .hero-frame::before, .hero-frame::after {
+    content: ""; position: absolute; width: 22px; height: 22px;
+    border: 1.5px solid var(--brass-light);
+  }
+  .hero-frame::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+  .hero-frame::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+  .intro { padding: 72px 24px 40px; background: var(--paper); }
+  .intro .kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--terracotta); margin-bottom: 14px;
+  }
+  .intro p {
+    font-family: 'Fraunces', serif; font-weight: 400;
+    font-size: clamp(21px, 3.2vw, 27px); line-height: 1.5;
+    color: var(--teak); margin: 0 0 20px;
+  }
+  .intro .lede {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px; line-height: 1.75; color: #4A3E2C; max-width: 640px;
+  }
+
+  .section-head { padding: 64px 24px 8px; background: var(--paper); }
+  .section-head .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; color: var(--brass); letter-spacing: 0.1em; margin-bottom: 10px;
+  }
+  .section-head h2 {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: clamp(28px, 5vw, 42px);
+    color: var(--teak); margin: 0 0 12px; line-height: 1.05;
+  }
+  .section-head .desc { font-size: 15.5px; line-height: 1.7; color: #5B4E3A; max-width: 600px; }
+
+  .frame { margin: 28px 24px 0; position: relative; }
+  .frame-inner { position: relative; background: var(--teak-deep); border-radius: 2px; overflow: hidden; }
+  .frame img { width: 100%; display: block; }
+  .frame-cap {
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 12px;
+    padding: 10px 14px; background: var(--teak-deep);
+  }
+  .frame-cap .story {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13.5px; line-height: 1.5; color: #E4D9BE; max-width: 76%;
+  }
+  .frame-cap .tag { text-align: right; white-space: nowrap; }
+
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin: 28px 24px 0; }
+  .duo .frame { margin: 0; }
+  @media (max-width: 620px) { .duo { grid-template-columns: 1fr; } }
+
+  .pull { padding: 56px 24px; background: var(--teak); margin-top: 56px; }
+  .pull blockquote {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 500;
+    font-size: clamp(24px, 4.5vw, 34px); line-height: 1.35;
+    color: var(--brass-light); max-width: 640px; margin: 0 auto; text-align: center;
+  }
+  .pull cite {
+    display: block; font-family: 'JetBrains Mono', monospace; font-style: normal;
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: #8A7A5D; margin-top: 20px; text-align: center;
+  }
+
+  .closing { padding: 72px 24px 48px; background: var(--paper); }
+  .closing p { font-size: 16px; line-height: 1.75; color: #4A3E2C; max-width: 640px; margin: 0 0 18px; }
+  .closing .signoff { font-family: 'Fraunces', serif; font-style: italic; font-size: 20px; color: var(--terracotta); margin-top: 32px; }
+
+  footer { padding: 28px 24px 40px; background: var(--teak-deep); text-align: center; }
+  footer .exif { opacity: 0.7; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <img src="images/01.jpg" alt="Detail atap rumah adat dengan ornamen tanduk kerbau">
+  <div class="hero-frame"></div>
+  <div class="hero-content wrap" style="max-width:100%;">
+    <div class="hero-eyebrow"><span class="dot"></span>Ekskul Iptek — Sesi Hunting</div>
+    <h1>Napak Tilas <em>Nusantara</em><br>dalam Satu Bingkai</h1>
+    <p>Sehari muter-muter bawa kamera, kepala penuh rasa penasaran, dan lensa yang nggak berhenti nyari cerita di setiap sudut anjungan.</p>
+  </div>
+</div>
+
+<div class="intro">
+  <div class="wrap">
+    <div class="kicker">Frame 01 — Berangkat</div>
+    <p>Kadang belajar paling nempel itu bukan dari slide presentasi, tapi dari jalan kaki sambil megang kamera.</p>
+    <div class="lede">
+      Itu premis sesi <em>hunting</em> ekskul Iptek kali ini: bawa tim keluar dari kelas, lepas ke kompleks rumah adat dan museum budaya, terus suruh mereka pulang bawa cerita — bukan cuma catatan. Targetnya sederhana: satu hari, satu kompleks, sebanyak mungkin detail yang biasanya cuma lewat gitu aja kalau nggak difoto pelan-pelan.
+    </div>
+  </div>
+</div>
+
+<div class="divider">
+  <svg viewBox="0 0 760 18" preserveAspectRatio="none">
+    <line x1="0" y1="9" x2="760" y2="9" stroke="#B08D57" stroke-width="1" opacity="0.4"/>
+    <rect x="16" y="5" width="8" height="8" fill="#8C3B2E" opacity="0.55" transform="rotate(45 20 9)"/><rect x="54" y="5" width="8" height="8" fill="#8C3B2E" opacity="0.55" transform="rotate(45 58 9)"/><rect x="92" y="5" width="8" height="8" fill="#8C3B2E" opacity="0.55" transform="rotate(45 96 9)"/><rect x="130" y="5" width="8" height="8" fill="#8C3B2E" opacity="0.55" transform="rotate(45 134 9)"/><rect x="168" y="5" width="8" height="8" fill="#8C3B2E" opacity="0.55" transform="rotate(45 172 9)"/><rect x="206" y="5" width="8" height="8" fill="#8C3B2E" opacity="0.55" transform="rotate(45 210 9)"/><rect x="244" y="5" width="8" height="8" fill="#8C3B2E" opacity="0.55" transform="rotate(45 248 9)"/><rect x="282" y="5" width="8" height="8" fill="#8C3B2E" opacity="0.55" transform="rotate(45 286 9)"/><rect x="320" y="5" width="8" height="8" fill="#8C3B2E" opacity="0.55" transform="rotate(45 324 9)"/><rect x="358" y="5" width="8" height="8" fill="#8C3B2E" opacity="0.55" transform="rotate(45 362 9)"/><rect x="396" y="5" width="8" height="8" fill="#8C3B2E" opacity="0.55" transform="rotate(45 400 9)"/><rect x="434" y="5" width="8" height="8" fill="#8C3B2E" opacity="0.55" transform="rotate(45 438 9)"/><rect x="472" y="5" width="8" height="8" fill="#8C3B2E" opacity="0.55" transform="rotate(45 476 9)"/><rect x="510" y="5" width="8" height="8" fill="#8C3B2E" opacity="0.55" transform="rotate(45 514 9)"/><rect x="548" y="5" width="8" height="8" fill="#8C3B2E" opacity="0.55" transform="rotate(45 552 9)"/><rect x="586" y="5" width="8" height="8" fill="#8C3B2E" opacity="0.55" transform="rotate(45 590 9)"/><rect x="624" y="5" width="8" height="8" fill="#8C3B2E" opacity="0.55" transform="rotate(45 628 9)"/><rect x="662" y="5" width="8" height="8" fill="#8C3B2E" opacity="0.55" transform="rotate(45 666 9)"/><rect x="700" y="5" width="8" height="8" fill="#8C3B2E" opacity="0.55" transform="rotate(45 704 9)"/><rect x="738" y="5" width="8" height="8" fill="#8C3B2E" opacity="0.55" transform="rotate(45 742 9)"/>
+  </svg>
+</div>
+
+<div class="section-head">
+  <div class="wrap">
+    <div class="num">01 / Anjungan Daerah</div>
+    <h2>Rumah yang Bercerita<br>Sebelum Kita Bertanya</h2>
+    <div class="desc">Setiap gonjong, setiap ukiran di dinding, sebenarnya sudah menjawab pertanyaan sebelum diajukan — soal asal daerah, soal filosofi, soal siapa yang dulu tinggal di bawah atapnya.</div>
+  </div>
+</div>
+
+<div class="wrap" style="padding:0 24px;">
+<div class="frame">
+  <div class="frame-inner">
+    <img src="images/02.jpg" alt="Dua rumah adat pada siang hari">
+    <div class="frame-cap">
+      <div class="story">Anjungan berjejer dari ujung ke ujung — tiap atap punya kemiringan dan warna sendiri.</div>
+      <div class="tag exif">DMC-G85 · 45MM · F/4.6</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="wrap" style="padding:0 24px;">
+<div class="frame">
+  <div class="frame-inner">
+    <img src="images/03.jpg" alt="Panggung merah dan rumah adat gonjong">
+    <div class="frame-cap">
+      <div class="story">Panggung kosong sebelum jam kunjungan ramai — sempat dapat lokasi tanpa satu kepala pun menutupi frame.</div>
+      <div class="tag exif">DMC-G85 · 30MM · F/4.5</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="duo">
+  <div class="frame">
+    <div class="frame-inner">
+      <img src="images/04.jpg" alt="Papan nama Rumah etnis Angkola Bagas Godang">
+      <div class="frame-cap">
+        <div class="story">Papan info di depan Bagas Godang — detail yang gampang kelewat kalau jalan buru-buru.</div>
+        <div class="tag exif">91MM · F/5.6</div>
+      </div>
+    </div>
+  </div>
+  <div class="frame">
+    <div class="frame-inner">
+      <img src="images/05.jpg" alt="Atap rumah adat dari sudut rendah">
+      <div class="frame-cap">
+        <div class="story">Angle rendah, dikepung dahan pohon — biar atapnya kelihatan sedikit menggantung ke langit.</div>
+        <div class="tag exif">16MM · F/22</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap" style="padding:0 24px;">
+<div class="frame">
+  <div class="frame-inner">
+    <img src="images/06.jpg" alt="Miniatur perahu layar tradisional dalam vitrin galeri">
+    <div class="frame-cap">
+      <div class="story">Miniatur kapal layar dua tiang — dipajang lengkap dengan panel cerita di dinding belakangnya.</div>
+      <div class="tag exif">Galeri Anjungan</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="divider">
+  <svg viewBox="0 0 760 18" preserveAspectRatio="none">
+    <line x1="0" y1="9" x2="760" y2="9" stroke="#B08D57" stroke-width="1" opacity="0.4"/>
+    <rect x="16" y="5" width="8" height="8" fill="#4B5A3E" opacity="0.55" transform="rotate(45 20 9)"/><rect x="54" y="5" width="8" height="8" fill="#4B5A3E" opacity="0.55" transform="rotate(45 58 9)"/><rect x="92" y="5" width="8" height="8" fill="#4B5A3E" opacity="0.55" transform="rotate(45 96 9)"/><rect x="130" y="5" width="8" height="8" fill="#4B5A3E" opacity="0.55" transform="rotate(45 134 9)"/><rect x="168" y="5" width="8" height="8" fill="#4B5A3E" opacity="0.55" transform="rotate(45 172 9)"/><rect x="206" y="5" width="8" height="8" fill="#4B5A3E" opacity="0.55" transform="rotate(45 210 9)"/><rect x="244" y="5" width="8" height="8" fill="#4B5A3E" opacity="0.55" transform="rotate(45 248 9)"/><rect x="282" y="5" width="8" height="8" fill="#4B5A3E" opacity="0.55" transform="rotate(45 286 9)"/><rect x="320" y="5" width="8" height="8" fill="#4B5A3E" opacity="0.55" transform="rotate(45 324 9)"/><rect x="358" y="5" width="8" height="8" fill="#4B5A3E" opacity="0.55" transform="rotate(45 362 9)"/><rect x="396" y="5" width="8" height="8" fill="#4B5A3E" opacity="0.55" transform="rotate(45 400 9)"/><rect x="434" y="5" width="8" height="8" fill="#4B5A3E" opacity="0.55" transform="rotate(45 438 9)"/><rect x="472" y="5" width="8" height="8" fill="#4B5A3E" opacity="0.55" transform="rotate(45 476 9)"/><rect x="510" y="5" width="8" height="8" fill="#4B5A3E" opacity="0.55" transform="rotate(45 514 9)"/><rect x="548" y="5" width="8" height="8" fill="#4B5A3E" opacity="0.55" transform="rotate(45 552 9)"/><rect x="586" y="5" width="8" height="8" fill="#4B5A3E" opacity="0.55" transform="rotate(45 590 9)"/><rect x="624" y="5" width="8" height="8" fill="#4B5A3E" opacity="0.55" transform="rotate(45 628 9)"/><rect x="662" y="5" width="8" height="8" fill="#4B5A3E" opacity="0.55" transform="rotate(45 666 9)"/><rect x="700" y="5" width="8" height="8" fill="#4B5A3E" opacity="0.55" transform="rotate(45 704 9)"/><rect x="738" y="5" width="8" height="8" fill="#4B5A3E" opacity="0.55" transform="rotate(45 742 9)"/>
+  </svg>
+</div>
+
+<div class="section-head">
+  <div class="wrap">
+    <div class="num">02 / Ruang Pusaka</div>
+    <h2>Senjata, Bunyi,<br>dan Benang yang Diikat</h2>
+    <div class="desc">Masuk ke ruang koleksi, fokus berubah — dari fasad bangunan ke detail kecil: ukiran gagang keris, motif tenun, dan alat musik yang berbaris menunggu ditabuh.</div>
+  </div>
+</div>
+
+<div class="duo">
+  <div class="frame">
+    <div class="frame-inner">
+      <img src="images/07.jpg" alt="Dua bilah keris terpajang">
+      <div class="frame-cap">
+        <div class="story">Gagang berukir kepala naga, disandarkan dekat jendela — cahaya alami jadi satu-satunya lampu sorot.</div>
+        <div class="tag exif">41MM · F/4.5</div>
+      </div>
+    </div>
+  </div>
+  <div class="frame">
+    <div class="frame-inner">
+      <img src="images/08.jpg" alt="Deretan gong tradisional">
+      <div class="frame-cap">
+        <div class="story">Gong-gong tersusun rapi, seperti menunggu giliran dibunyikan satu per satu.</div>
+        <div class="tag exif">41MM · ISO800</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap" style="padding:0 24px;">
+<div class="frame">
+  <div class="frame-inner">
+    <img src="images/09.jpg" alt="Kumpulan alat musik tradisional">
+    <div class="frame-cap">
+      <div class="story">Satu sudut ruang isinya alat musik semua — gambang, gendang, gong kecil, sampai kecapi bersanding jadi satu komposisi.</div>
+      <div class="tag exif">Ruang Koleksi Musik</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="wrap" style="padding:0 24px;">
+<div class="frame">
+  <div class="frame-inner">
+    <img src="images/10.jpg" alt="Kain tenun ikat digantung berjajar di lorong">
+    <div class="frame-cap">
+      <div class="story">Satu lorong, satu daerah beda motif — merah, biru tua, sampai kuning keemasan berjajar seperti galeri seni.</div>
+      <div class="tag exif">Lorong Tekstil</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="wrap" style="padding:0 24px;">
+<div class="frame">
+  <div class="frame-inner">
+    <img src="images/11.jpg" alt="Vitrin kaca berisi kain dan kerajinan anyaman">
+    <div class="frame-cap">
+      <div class="story">Tiga vitrin berjejer — kain tradisional di tengah, kerajinan anyaman di kiri-kanan.</div>
+      <div class="tag exif">Canon EOS M3 · 15MM</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="wrap" style="padding:0 24px;">
+<div class="frame">
+  <div class="frame-inner">
+    <img src="images/12.jpg" alt="Perhiasan pernikahan adat Sumatera Barat dalam vitrin">
+    <div class="frame-cap">
+      <div class="story">Aksesoris pernikahan Sumatera Barat — suntiang dan gelang pacah mato, disorot lampu vitrin dari atas.</div>
+      <div class="tag exif">Koleksi Perhiasan</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="pull">
+  <blockquote>"Detail yang paling kecil — label kaca, benang di ujung kain — sering justru yang paling lama diingat dari sesi hunting hari itu."</blockquote>
+  <cite>— catatan tim Iptek</cite>
+</div>
+
+<div class="section-head">
+  <div class="wrap">
+    <div class="num">03 / Museum Indonesia</div>
+    <h2>Topeng, Garuda,<br>dan Langit-Langit Kaca</h2>
+    <div class="desc">Pindah ke bangunan bergaya Bali yang menyimpan koleksi dari seluruh penjuru negeri — di sinilah kamera paling sering diarahkan ke atas.</div>
+  </div>
+</div>
+
+<div class="wrap" style="padding:0 24px;">
+<div class="frame">
+  <div class="frame-inner">
+    <img src="images/13.jpg" alt="Dua patung Garuda besar bergaya Bali">
+    <div class="frame-cap">
+      <div class="story">Dua Garuda raksasa berdiri di lorong masuk — sayapnya nyaris menyentuh langit-langit.</div>
+      <div class="tag exif">28MM · ISO1000</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="duo">
+  <div class="frame">
+    <div class="frame-inner">
+      <img src="images/14.jpg" alt="Topeng Gajah Waktra dari koleksi museum">
+      <div class="frame-cap">
+        <div class="story">Topeng Gajah Waktra — detail gading dan matanya bikin kamera berhenti lebih lama di sini.</div>
+        <div class="tag exif">Koleksi Topeng</div>
+      </div>
+    </div>
+  </div>
+  <div class="frame">
+    <div class="frame-inner">
+      <img src="images/15.jpg" alt="Replika tengkorak manusia purba dalam vitrin">
+      <div class="frame-cap">
+        <div class="story">Replika tengkorak manusia purba — satu-satunya frame yang bikin obrolan sepanjang perjalanan pulang.</div>
+        <div class="tag exif">POCO F7 · 26MM</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap" style="padding:0 24px;">
+<div class="frame">
+  <div class="frame-inner">
+    <img src="images/16.jpg" alt="Ukiran besar di aula utama museum dengan langit-langit kaca">
+    <div class="frame-cap">
+      <div class="story">Ukiran raksasa di tengah aula, disorot dari belakang oleh langit-langit kaca — siluetnya lebih kuat dari warnanya sendiri.</div>
+      <div class="tag exif">Aula Utama</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="wrap" style="padding:0 24px;">
+<div class="frame">
+  <div class="frame-inner">
+    <img src="images/17.jpg" alt="Ukiran kayu berbentuk tabung dengan aksara terukir">
+    <div class="frame-cap">
+      <div class="story">Benda kayu berukir aksara di teras — bentuknya unik, jadi salah satu favorit buat difoto dekat-dekat.</div>
+      <div class="tag exif">Teras Museum</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="wrap" style="padding:0 24px;">
+<div class="frame">
+  <div class="frame-inner">
+    <img src="images/18.jpg" alt="Patung singa batu Bali di dekat kolam bangunan museum">
+    <div class="frame-cap">
+      <div class="story">Patung penjaga di tepi kolam, dengan bangunan bergaya Bali sebagai latar — cahaya sore bikin siluetnya lebih dramatis.</div>
+      <div class="tag exif">26MM · F/20</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="closing">
+  <div class="wrap">
+    <div class="kicker">Frame 20 — Pulang</div>
+    <p>
+      Satu hari, satu kompleks, dua puluh frame yang lolos seleksi — dan ratusan lain yang gugur di kartu memori.
+      Yang paling berharga bukan cuma hasil akhirnya, tapi proses berhenti sejenak di depan hal-hal yang biasanya cuma dilewati: papan nama kecil, ukiran di sudut atap, label kaca yang hampir nggak kebaca.
+    </p>
+    <p>
+      Itulah inti dari <em>hunting</em> ala ekskul Iptek — bukan sekadar jalan-jalan bawa kamera, tapi latihan buat benar-benar melihat.
+      Sampai ketemu di sesi hunting berikutnya!
+    </p>
+    <div class="signoff">— Tim Ekskul Iptek</div>
+  </div>
+</div>
+
+<footer>
+  <div class="exif">18 FRAME · SATU KOMPLEKS · SATU HARI</div>
+</footer>
+
+</body>
+</html>
